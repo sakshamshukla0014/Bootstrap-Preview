@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container mt-3">
+
+
+        <form>
+            Name: <input type="text"> <br><br>
+            Email: <input type="text"> <br> <br>
+            Technical skills: <input type="text"> <br> <br>
+            Experience: <input type="text"> <br> <br>
+
+        </form>
+        <!-- This button opens the dialog box -->
+        <button type="button" class="btn btn-primary" id="myBtn">Preview</button>
+
+        <!--Dialog box Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Preview</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="data">
+                            <!-- container  for form -->
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("#myBtn").click(function () {
+                //   SHOWS DIALOG BOX
+                $("#myModal").modal("show");
+            });
+            $("#myModal").on('show.bs.modal', function () {
+                // THIS FUNCTION IS CALLED ON OPENING OF DIALOG BOX ON
+                //  CLICKING ON PREVIEW BUTTON 
+                printDetails();
+
+            });
+        });
+    </script>
+
+    <script>
+        function printDetails() {
+            // ARRAY
+            let fields = ['NAME', ' EMAIL', 'TECHNICAL SKILLS '];
+            let values = [];
+            document.getElementById("data").innerHTML = ''; //clearing dialog box fields
+
+            // ADDING ELEMENTS IN ARRAY
+            fields.push('EXPERIENCE');
+
+
+
+            $("input").each(function () { // each IN JQUERY
+                values.push($(this).val()); //GETTING VALUES OF FIELDS
+            });
+
+
+            // FOR LOOP IN JAVASCRIPT
+            for (let i = 0; i < fields.length; i++) {
+
+                if (values[i]) { // only filled values display
+
+                    // CREATING DYNAMIC HTML WITH JAVASCRIPT
+                    document.getElementById("data").innerHTML += `
+                
+              <div class="alert alert-info">  ${fields[i]}:  ${values[i]} </div>
+                
+                `;
+
+                }
+                // IF CONDITION ENDS HERE
+
+
+            }
+            // FOR LOOP ENDS HERE
+
+        }
+
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>
